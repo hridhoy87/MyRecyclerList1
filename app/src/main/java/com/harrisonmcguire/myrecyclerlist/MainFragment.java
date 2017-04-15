@@ -51,7 +51,7 @@ public class MainFragment extends Fragment {
     private static final String aww = "aww";
     private static final String funny = "funny";
     private static final String food = "food";
-    private static final String subredditUrl = "http://www.reddit.com/r/";
+    private static final String subredditUrl = "https://www.reddit.com/r/";
     private static final String jsonEnd = "/.json";
     private static final String qCount = "?count=";
     private static final String after = "&after=";
@@ -66,7 +66,7 @@ public class MainFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         // uncomment the below decoration line for card view
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).color(Color.BLACK).build());
+        //mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).color(Color.BLACK).build());
 
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -113,19 +113,20 @@ public class MainFragment extends Fragment {
         adapter = new MyRecyclerAdapter(getActivity(), listItemsList);
         mRecyclerView.setAdapter(adapter);
 
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        RequestQueue queue = Volley.newRequestQueue(getActivity(),null);
 
         adapter.clearAdapter();
 
         showPD();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, subreddit, null, new Response.Listener<JSONObject>(){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
+                /*subreddit*/"https://www.reddit.com/r/aww/.json", null, new Response.Listener<JSONObject>(){
 
             @Override
             public void onResponse(JSONObject response) {
 
                 Log.d(TAG, response.toString());
-                hidePD();
+                //hidePD();
 
                 try {
                     JSONObject data = response.getJSONObject("data");
