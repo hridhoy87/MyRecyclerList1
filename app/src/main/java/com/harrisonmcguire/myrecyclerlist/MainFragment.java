@@ -117,10 +117,10 @@ public class MainFragment extends Fragment {
 
         adapter.clearAdapter();
 
-        showPD();
+        //showPD();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                /*subreddit*/"https://www.reddit.com/r/aww/.json", null, new Response.Listener<JSONObject>(){
+                subreddit, null, new Response.Listener<JSONObject>(){
 
             @Override
             public void onResponse(JSONObject response) {
@@ -157,7 +157,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error" + error.getMessage());
-                hidePD();
+                //hidePD();
             }
         });
 
@@ -178,7 +178,7 @@ public class MainFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
-        showPD();
+        //showPD();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, subreddit, null, new Response.Listener<JSONObject>(){
 
@@ -186,7 +186,7 @@ public class MainFragment extends Fragment {
             public void onResponse(JSONObject response) {
 
                 Log.d(TAG, response.toString());
-                hidePD();
+                //hidePD();
 
                 try {
                     JSONObject data = response.getJSONObject("data");
@@ -217,7 +217,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error" + error.getMessage());
-                hidePD();
+                //hidePD();
             }
         });
 
@@ -252,7 +252,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hidePD();
+        //hidePD();
     }
 
 }
